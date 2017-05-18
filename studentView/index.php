@@ -10,22 +10,34 @@ session_destroy();
 	
 	<style>
 	
+	html {
+		background: url("dragon.jpg") no-repeat center center fixed;
+		background-size: cover;
+		}
+	
 	input[type=submit] {
-    width: 50%;
-    background-color: blue;
-    color: yellow;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+		width: 50%;
+		background: #092F62;
+		color: FFC600;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
 
 	h1 {
-	
-	color: blue;
-	
-	}
+		font-family: "PT Serif";
+		font-size: 86px;
+		text-align: center;
+		text-shadow:
+		-1px -1px 0 #092F62 ,
+		1px -1px 0 #092F62 ,
+		-1px 1px 0 #092F62 ,
+		1px 1px 0 #092F62 ; 
+		color: FFC600;
+		margin: 2%;
+		}
 	
 	</style>
 	

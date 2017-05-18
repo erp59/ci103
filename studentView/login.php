@@ -49,6 +49,7 @@
 			padding: 14px 20px;
 			border: none;
 			border-radius: 4px;
+			margin-top: 15px;
 			cursor: pointer;
 		}
 
@@ -60,7 +61,7 @@
 			text-align: center;
 			font-size: 24px;
 			border-radius: 10px;
-			background-color: rgba(9,47,98,.9);
+			background: rgba(9,47,98,.9);
 			width: 55%;
 			height: 55%;
 			margin: 0 auto;
@@ -111,7 +112,7 @@
 		
 			</form>
 			
-			<p id="policy"> Drexel guest policy can be found in the Student Handbooko n page 22 and all guests are subject to dorm policies. Click the handbook below to view the Drexel Student Handbook.</p>
+			<p id="policy"> Drexel guest policy can be found in the Student Handbook on page 22 and all guests are subject to dorm policies. Click the handbook below to view the Drexel Student Handbook.</p>
 			<a href="http://drexel.edu/~/media/Files/studentlife/sccs/student-handbook-2016-17.ashx?la=en"><img src="http://drexel.edu/~/media/Images/studentlife/SCCS/Student%20Handbook%20Cover.ashx?h=235&w=175&la=en&hash=51371AAE92D65DFE2F1A15CF8604EC76791BB9FC" alt="Student Handbook" height="100" width="80"></img></a>
 		
 		</div>
