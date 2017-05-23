@@ -3,11 +3,11 @@
 session_start();
 
 //Gather Session variables
-$rUser = $_SESSION['residentUsername'];
-$gUser = $_SESSION['guestUsername'];
-$Gid = $_SESSION['Gid'];
-$fName = $_SESSION['fName'];
-$lName = $_SESSION['lName'];
+$rUser = $_SESSION['rusername'];
+$gUser = $_SESSION['gusername'];
+$Gid = $_SESSION['gID'];
+$fName = $_SESSION['gFName'];
+$lName = $_SESSION['gLName'];
 $dateIn = $_SESSION['dateIn'];
 $timeIn = $_SESSION['timeIn'];
 $dateOut = $_SESSION['dateOut'];

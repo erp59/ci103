@@ -32,10 +32,12 @@ if (mysql_num_rows($userNameExist) == 0) {
     
     	
     	//Add info to Session
-    	$_SESSION['guestUsername'] = $gUser;
-    	$_SESSION['Gid'] = mysql_result($userNameExist, 0, 'id');
-    	$_SESSION['fName'] = mysql_result($userNameExist, 0, 'fName');
-    	$_SESSION['lName'] = mysql_result($userNameExist, 0, 'lName');
+    	$_SESSION['gusername'] = $gUser;
+    	$_SESSION['gID'] = mysql_result($userNameExist, 0, 'id');
+    	$_SESSION['gFName'] = mysql_result($userNameExist, 0, 'fName');
+    	$_SESSION['gLName'] = mysql_result($userNameExist, 0, 'lName');
+    	$_SESSION['gTNumber'] = mysql_result($userNameExist, 0, 'tNumber');
+		$_SESSION['gGender'] = mysql_result($userNameExist, 0, 'tNumber');
     	$_SESSION['dateIn'] = $dateIn;
     	$_SESSION['timeIn'] = $timeIn;
     	$_SESSION['dateOut'] = $dateOut;

@@ -8,11 +8,12 @@
 
 session_start();
 
-$rUser = $_SESSION['residentUsername'];
-
+$rUser = $_SESSION['rusername'];
+$fName = $_SESSION['rFName'];
+$lName = $_SESSION['rLName'];
 $hall = $_SESSION['hall'];
 
-$id = $_SESSION['id'];
+$id = $_SESSION['rID'];
 
 
 //DB connection
@@ -24,23 +25,11 @@ if (!mysql_select_db('mysql')) {
     die('Could not select database: ' . mysql_error());
 }
 
-$userInfo = mysql_query("SELECT * FROM drexelStudents WHERE username = '$rUser'");
+$dPendingGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND pending = '1'");
 
-$fName = mysql_result($userInfo, 0, 'fName');
-$lName = mysql_result($userInfo, 0, 'lName');
-
-$_SESSION['fName'] = $fName;
-$_SESSION['lName'] = $lName;
-
-$dPendingGuest = mysql_query("SELECT * FROM drexelGuest WHERE rusername = '$rUser'AND pending = '1'");
-$nPendingGuest = mysql_query("SELECT * FROM nonDrexelGuest WHERE rusername = '$rUser'AND pending = '1'");
-
-$dSignedGuest = mysql_query("SELECT * FROM drexelGuest WHERE rusername = '$rUser'AND pending = '0'");
-$nSignedGuest = mysql_query("SELECT * FROM nonDrexelGuest WHERE rusername = '$rUser'AND pending = '0'");
+$dSignedGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND pending = '0'");
 
 $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
-		
-		
 		
 
 ?>
@@ -130,18 +119,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		}//end for
 		}// end if DGuest
 		
-		//NonDrexel Guest For Loop
-		if (mysql_num_rows($nPendingGuest) != 0){
-		for($y = 0; $y < mysql_num_rows($nPendingGuest); $y++){	
-			$gFN = mysql_result($nPendingGuest, $y, 'fName');
-			$gLN = mysql_result($nPendingGuest, $y, 'lName');
-			$gName = $gFN." ".$gLN;
-			$timeIn = mysql_result($nPendingGuest, $y, 'timeIn');
-			$currentGuest = array($gName, $timeIn);
-			array_push($guest, $currentGuest);
-			
-		}//end for
-		}// end if DGuest
 		
 		echo "<tr>";
         echo "<th>Name</th>";
@@ -229,18 +206,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		}//end for
 		}// end if DGuest
 		
-		//NonDrexel Guest For Loop
-		if (mysql_num_rows($nSignedGuest) != 0){
-		for($y = 0; $y < mysql_num_rows($nSignedGuest); $y++){	
-			$gFN = mysql_result($nSignedGuest, $y, 'fName');
-			$gLN = mysql_result($nSignedGuest, $y, 'lName');
-			$gName = $gFN." ".$gLN;
-			$timeIn = mysql_result($nSignedGuest, $y, 'timeOut');
-			$currentGuest = array($gName, $timeIn);
-			array_push($guest, $currentGuest);
-			
-		}//end for
-		}// end if DGuest
 		
 		echo "<tr>";
         echo "<th>Name</th>";

@@ -35,9 +35,13 @@ if (mysql_num_rows($userNamePassword) != 0) {
 	//Dorm Status Check
 	if (mysql_num_rows($hallCheck) != 0) {
 	
-	
+	$_SESSION['rID'] = mysql_result($hallCheck, 0, 'id');
+	$_SESSION['rusername'] = mysql_result($hallCheck, 0, 'username');
+	$_SESSION['rFName'] = mysql_result($hallCheck, 0, 'fName');
+	$_SESSION['rLName'] = mysql_result($hallCheck, 0, 'lName');
+	$_SESSION['rTNumber'] = mysql_result($hallCheck, 0, 'tNumber');
+	$_SESSION['rGender'] = mysql_result($hallCheck, 0, 'gender');
 	$_SESSION['hall'] = mysql_result($hallCheck, 0, 'hall');
-	$_SESSION['id'] = mysql_result($hallCheck, 0, 'id');
 	
 	//Forward to guest choice
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=dashboard.php\">";

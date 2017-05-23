@@ -3,12 +3,14 @@
 session_start();
 
 //Gather Guest and Resident INFO
-$rUser = $_SESSION['residentUsername'];
-$gUser = $_SESSION['guestUsername'];
-$id = $_SESSION['id'];
-$Gid = $_SESSION['Gid'];
-$fName = $_SESSION['fName'];
-$lName = $_SESSION['lName'];
+
+$rID = $_SESSION['rID'];
+$rUser = $_SESSION['rusername'];
+$gUser = $_SESSION['gusername'];
+$gFName = $_SESSION['gFName'];
+$gLName = $_SESSION['gLName'];
+$gTNumber = $_SESSION['gTNumber'];
+$gGender = $_SESSION['gGender'];
 $dateIn = $_SESSION['dateIn'];
 $timeIn = $_SESSION['timeIn'];
 $dateOut = $_SESSION['dateOut'];
@@ -25,7 +27,7 @@ if (!mysql_select_db('mysql')) {
 }
 
 //Add guest to Drexel Guest Table with Pending set to 1
-$sql = "INSERT INTO drexelGuest VALUES ('$id', '$gUser', '$fName', '$lName', '$rUser', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
+$sql = "INSERT INTO Guest VALUES ('$dbID', '$rID, '$rUser', '$gUser', '$fName', '$lName', '$gTNumber', 'gGender', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
 
 mysql_query($sql);
 
