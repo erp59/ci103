@@ -4,13 +4,13 @@
 session_start();
 
 //Gather Guest and Resident INFO
-$rUserName = $_SESSION['residentUsername'];
-$id = $_SESSION['id'];
+$ID = rand(100000, 999999);
+$rUser = $_SESSION['residentUsername'];
+$rID = $_SESSION['rID'];
 $gFirst = $_SESSION['gFirst'];
 $gLast = $_SESSION['gLast'];
 $gEmail = $_SESSION['gEmail'];
 $gTNumber = $_SESSION['gTNumber'];
-$gGender = $_SESSION['gGender'];
 $dateIn = $_SESSION['dateIn'];
 $timeIn = $_SESSION['timeIn'];
 $dateOut = $_SESSION['dateOut'];
@@ -27,7 +27,9 @@ if (!mysql_select_db('mysql')) {
 }
 
 //Add guest to Drexel Guest Table with Pending set to 1
-$sql = "INSERT INTO nonDrexelGuest VALUES ('$id', '$rUserName', '$gFirst', '$gLast', '$gGender', '$gTNumber', '$gEmail', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
+$sql1 = "INSERT INTO Guest (`ID`, `rID`, `rusername`, `gusername`, `gfn`, `gln`, `gtnumber`, `hall`, `din`, `tin`, `dout`, `tout`, `pending`) ";
+$sql2 = "VALUES ('$ID', '$rID', '$rUser', '$gEmail', '$gFirst', '$gLast', '$gTNumber', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
+$sql = $sql1.$sql2;
 mysql_query($sql);
 
 //Forward to Confirmed when done

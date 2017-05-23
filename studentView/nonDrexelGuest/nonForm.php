@@ -27,11 +27,6 @@ session_start();
     		<td><input type="text" name="ln"></td> 
   		</tr>
   		
-  		<tr>
-  		
-    		<td><h1>Gender</h1></td>
-    		<td><input type="radio" name="gender" value="Male">Male <input type="radio" name="gender" value="Female">Female</td> 
-  		</tr>
   		
   		<tr>
   		

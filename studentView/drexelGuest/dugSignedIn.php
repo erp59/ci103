@@ -4,6 +4,7 @@ session_start();
 
 //Gather Guest and Resident INFO
 
+$ID = "21321";
 $rID = $_SESSION['rID'];
 $rUser = $_SESSION['rusername'];
 $gUser = $_SESSION['gusername'];
@@ -26,9 +27,11 @@ if (!mysql_select_db('mysql')) {
     die('Could not select database: ' . mysql_error());
 }
 
-//Add guest to Drexel Guest Table with Pending set to 1
-$sql = "INSERT INTO Guest VALUES ('$dbID', '$rID, '$rUser', '$gUser', '$fName', '$lName', '$gTNumber', 'gGender', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
 
+//Add guest to Drexel Guest Table with Pending set to 1
+$sql1 = "INSERT INTO Guest (`ID`, `rID`, `rusername`, `gusername`, `gfn`, `gln`, `gtnumber`, `hall`, `din`, `tin`, `dout`, `tout`, `pending`) ";
+$sql2 = "VALUES ('$ID', '$rID', '$rUser', '$gUser', '$gFName', '$gLName', '$gTNumber', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
+$sql = $sql1.$sql2;
 mysql_query($sql);
 
 //Forward to Confirmed when done

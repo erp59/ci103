@@ -4,7 +4,6 @@ session_start();
 
 $fn = $_POST['fn'];
 $ln = $_POST['ln'];
-$gender = $_POST['gender'];
 $email = $_POST['email'];
 $tnumber = $_POST['tnumber'];
 $dateIn = $_POST['dateIn'];
@@ -15,7 +14,6 @@ $timeOut = $_POST['timeOut'];
 
 $_SESSION['gFirst'] = $fn;
 $_SESSION['gLast'] = $ln;
-$_SESSION['gGender'] = $gender;
 $_SESSION['gEmail'] = $email;
 $_SESSION['gTNumber'] = $tnumber;
 $_SESSION['dateIn'] = $dateIn;

@@ -30,6 +30,7 @@ $dPendingGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND 
 $dSignedGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND pending = '0'");
 
 $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
+
 		
 
 ?>
@@ -45,20 +46,93 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	<style>
 	
-	input[type=submit]:hover {
-    background-color: #45a049;
-	}
-	
+	<style>
+		
+		html {
+			background: url("dragon.jpg") no-repeat center center fixed;
+			background-size: cover;
+		}
+		
+		h1 {
+			font-family: "PT Serif";
+			font-size: 36px;
+			text-align: center;
+			text-shadow:
+			-1px -1px 0 #092F62 ,
+			1px -1px 0 #092F62 ,
+			-1px 1px 0 #092F62 ,
+			1px 1px 0 #092F62 ; 
+			color: FFC600;
+			margin: 2%;
+		}
+		
+		input[type=text], select {
+			padding: 12px 20px;
+			margin: 8px auto;
+			text-align: center;
+			position: relative;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		
+		input[type=password], select {
+			padding: 12px 20px;
+			margin: 8px auto;
+			text-align: center;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
 		input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-	}
+			text-align: center;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			border: none;
+			border-radius: 4px;
+			margin-top: 15px;
+			cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+
+		#text {
+			text-align: center;
+			font-size: 24px;
+			border-radius: 10px;
+			background: rgba(9,47,98,.9);
+			width: 55%;
+			height: 55%;
+			margin: 0 auto;
+			color: FFC600;
+		}
+		
+		#policy {
+			font-size: 18px;
+			font-style: italic;
+			text-align: left;
+			margin: 5%;
+		}
+		
+		#bottom {
+			text-align: right;
+			background-color: FFC600;
+			width: 100%;
+			height: 120px;
+			position: absolute;
+			bottom: 1;
+			left: 0;
+		}
+		
+		#logo {
+			margin: 0.55%;
+		}
+		
+
 	
 	
 	table, th, td {
@@ -103,16 +177,16 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	<form action='cancelGuest.php' Method= 'post'>
 	<?php
 	
-	if (mysql_num_rows($dPendingGuest) != 0 or mysql_num_rows($nPendingGuest) != 0 ) {
+	if (mysql_num_rows($dPendingGuest) != 0) {
 		
 		$guest = array();
 		//Drexel Guest For Loop
 		if (mysql_num_rows($dPendingGuest) != 0){
 		for($x = 0; $x < mysql_num_rows($dPendingGuest); $x++){
-			$gFN = mysql_result($dPendingGuest, $x, 'fName');
-			$gLN = mysql_result($dPendingGuest, $x, 'lName');
+			$gFN = mysql_result($dPendingGuest, $x, 'gfn');
+			$gLN = mysql_result($dPendingGuest, $x, 'gln');
 			$gName = $gFN." ".$gLN;
-			$timeIn = mysql_result($dPendingGuest, $x, 'timeIn');
+			$timeIn = mysql_result($dPendingGuest, $x, 'tin');
 			
 			$currentGuest = array($gName, $timeIn, $guestID);
 			array_push($guest, $currentGuest);
@@ -167,6 +241,15 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	</h2>
 	</td>
 	
+	
+	<?php 
+	//Checks for guest limit
+	
+	$numberOfRows = mysql_num_rows($dSignedGuest);
+	
+	if ($numberOfRows < 3){
+	
+	?>
 	<td>
 		<div align="center">
 		<h1>Sign In a Guest</h1><br />
@@ -182,6 +265,28 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	</td>
 	</tr>
 	
+	<?php
+	
+	//end if
+	//Start else
+	}else{
+	
+	?>
+	
+	<td>
+		<div align="center">
+		<h1>You have reached the guest limit!</h1><br />
+		
+		</form>
+	</td>
+	</tr>
+	
+	<?php
+	
+	}//end else
+	
+	?>
+	
 	<tr>
 	<td>
 		
@@ -191,16 +296,16 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		<table border = "1" width='100%' height='100%'>
 		<?php
 	
-		if (mysql_num_rows($dSignedGuest) != 0 or mysql_num_rows($nSignedGuest) != 0 ) {
+		if (mysql_num_rows($dSignedGuest) != 0){
 		
 		$guest = array();
 		//Drexel Guest For Loop
 		if (mysql_num_rows($dSignedGuest) != 0){
 		for($x = 0; $x < mysql_num_rows($dSignedGuest); $x++){
-			$gFN = mysql_result($dSignedGuest, $x, 'fName');
-			$gLN = mysql_result($dSignedGuest, $x, 'lName');
+			$gFN = mysql_result($dSignedGuest, $x, 'gfn');
+			$gLN = mysql_result($dSignedGuest, $x, 'gln');
 			$gName = $gFN." ".$gLN;
-			$timeIn = mysql_result($dSignedGuest, $x, 'timeOut');
+			$timeIn = mysql_result($dSignedGuest, $x, 'tout');
 			$currentGuest = array($gName, $timeIn);
 			array_push($guest, $currentGuest);
 		}//end for
