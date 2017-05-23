@@ -46,7 +46,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	<style>
 	
-	<style>
 		
 		html {
 			background: url("dragon.jpg") no-repeat center center fixed;
@@ -63,6 +62,19 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			-1px 1px 0 #092F62 ,
 			1px 1px 0 #092F62 ; 
 			color: FFC600;
+			margin: 2%;
+		}
+		
+		h3 {
+			font-family: "PT Serif";
+			font-size: 18;
+			text-align: center;
+			text-shadow:
+			-1px -1px 0 #092F62 ,
+			1px -1px 0 #092F62 ,
+			-1px 1px 0 #092F62 ,
+			1px 1px 0 #092F62 ; 
+			color: FFFFFF;
 			margin: 2%;
 		}
 		
@@ -104,7 +116,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			text-align: center;
 			font-size: 24px;
 			border-radius: 10px;
-			background: rgba(9,47,98,.9);
+			background: rgba(255,255,250,1);
 			width: 55%;
 			height: 55%;
 			margin: 0 auto;
@@ -152,7 +164,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	<body>
 	
-	<div align="center">
+	<div id="text">
 			
 	<h1> Welcome, <?php echo $fName; echo " "; echo $lName;?></h1>
 	
@@ -161,14 +173,15 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	<br />
 	
 	<table border = "1">
+	
 
 	<tr>
 	<td>
 	<h1>
-	<div align="center">
+	
 	Pending Guest 
 	</h1>
-	</div>
+	
 	
 	
 	
@@ -205,16 +218,16 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			echo "<tr>";
 				for($b = 0; $b < 2; $b++){
 					echo "<td>";
-					echo "<h2>";
-					echo "<div align = 'center'>";
+					
+					
 					echo $guest[$a][$b];
-					echo "</div>";
+					
 					echo "</td>";
 					}
 					echo "<td>";
-					echo "<div align = 'center'>";
+					
 					echo "<input type='checkbox' name='cancel' value='".$guest[$a][0]."'";
-					echo "</div>";
+					
 					echo "</td>";
 			echo "</tr>";
 			echo "<tr>";
@@ -234,11 +247,11 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	
 	
-	</div>
+	
 	</table>
 	
 	
-	</h2>
+	
 	</td>
 	
 	
@@ -251,9 +264,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	?>
 	<td>
-		<div align="center">
+		
 		<h1>Sign In a Guest</h1><br />
-		</div>
+		
 		<form action="drexelGuest/dugSignin.php" Method= "post">
 		<input type="submit" value="Drexel Guest">
 		</form>
@@ -274,8 +287,8 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	?>
 	
 	<td>
-		<div align="center">
-		<h1>You have reached the guest limit!</h1><br />
+		
+		<h3>You have reached the guest limit!</h3><br />
 		
 		</form>
 	</td>
@@ -290,9 +303,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	<tr>
 	<td>
 		
-		<div align="center">
+		
 		<h1>Current Guest Signed In</h1>
-		</div>
+		<h3>
 		<table border = "1" width='100%' height='100%'>
 		<?php
 	
@@ -311,7 +324,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		}//end for
 		}// end if DGuest
 		
-		
+	
 		echo "<tr>";
         echo "<th>Name</th>";
     	echo "<th>Sign Out Time</th> ";
@@ -322,8 +335,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			echo "<tr>";
 				for($b = 0; $b < 2; $b++){
 					echo "<td>";
-					echo "<h2>";
+					echo "<h3>";
 					echo $guest[$a][$b];
+					echo "</h3>";
 					echo "</td>";
 					}
 			echo "</tr>";
@@ -336,6 +350,8 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	?>
 	
+	</h3>
+	
 	</table>
 	
 	
@@ -344,9 +360,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	</td>
 	
 	<td>
-		<div align="center">
+		
 		<h1>History</h1>
-		</div>
+		<h3>
 		
 		<table border = "1" width='100%' height='100%'>
 		<?php
@@ -375,7 +391,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			echo "<tr>";
 				for($b = 0; $b < 2; $b++){
 					echo "<td>";
-					echo "<h2>";
 					echo $guest[$a][$b];
 					echo "</td>";
 					}
@@ -389,13 +404,18 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	?>
 	
+	</h3>
+	
 	</table>
 		
 	</td>
 	</tr>
 	
 	
+	
 	</table>
+			
+	</div>		
 			
 	</body>
 	
