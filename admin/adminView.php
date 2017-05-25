@@ -12,7 +12,7 @@ if (!mysql_select_db('mysql')) {
 }
 
 //Search for all pending 
-$pending = mysql_query("SELECT * FROM drexelGuest WHERE pending = '1'");
+$pending = mysql_query("SELECT * FROM Guest WHERE pending = '1'");
 
 echo '<div align=center>';
 echo '<h1> Pending Guest </h1>';

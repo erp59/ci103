@@ -1,6 +1,6 @@
 <?php
 
-$guestName = $_POST['cancel'];
+$id = $_POST['cancel'];
 
 //DB connection
 $link = mysql_connect('localhost', 'root', 'root');
@@ -11,7 +11,12 @@ if (!mysql_select_db('mysql')) {
     die('Could not select database: ' . mysql_error());
 }
 
+$sql = "DELETE FROM Guest WHERE ID = '$id'";
 
-echo $guestName;
+mysql_query($sql);
+
+echo "<meta http-equiv=\"refresh\" content=\"0;URL=dashboard.php\">";
+
+
 
 ?>

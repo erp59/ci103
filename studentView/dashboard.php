@@ -200,8 +200,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			$gLN = mysql_result($dPendingGuest, $x, 'gln');
 			$gName = $gFN." ".$gLN;
 			$timeIn = mysql_result($dPendingGuest, $x, 'tin');
+			$DBID = mysql_result($dPendingGuest, $x, 'ID');
 			
-			$currentGuest = array($gName, $timeIn, $guestID);
+			$currentGuest = array($gName, $timeIn, $DBID);
 			array_push($guest, $currentGuest);
 		}//end for
 		}// end if DGuest
@@ -226,7 +227,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 					}
 					echo "<td>";
 					
-					echo "<input type='checkbox' name='cancel' value='".$guest[$a][0]."'";
+					echo "<input type='checkbox' name='cancel' value='".$guest[$a][2]."'";
 					
 					echo "</td>";
 			echo "</tr>";
@@ -371,11 +372,13 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		
 		$guest = array();
 		for($x = 0; $x < mysql_num_rows($history); $x++){
-			$gFN = mysql_result($history, $x, 'gFirstName');
-			$gLN = mysql_result($history, $x, 'gLastName');
+			$gFN = mysql_result($history, $x, 'gfn');
+			$gLN = mysql_result($history, $x, 'gln');
 			$gName = $gFN." ".$gLN;
-			$dateIn = mysql_result($history, $x, 'dateIn');
-			$currentGuest = array($gName, $dateIn);
+			$dateIn = mysql_result($history, $x, 'din');
+			$dateOut = mysql_result($history, $x, 'dout');
+			$DBID = mysql_result($history, $x, 'ID');
+			$currentGuest = array($gName, $dateIn, $dateOut, $DBID);
 			array_push($guest, $currentGuest);
 		}//end for
 		
@@ -384,16 +387,19 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		echo "<tr>";
         echo "<th>Name</th>";
     	echo "<th>Date Signed In</th> ";
+    	echo "<th>Date Signed Out</th> ";
+    	echo "<th>Checkbox</th> ";
   		echo "</tr>";
 		
 		//Loop through pendingGuest
 		for($a = 0; $a < count($guest); $a++){	
 			echo "<tr>";
-				for($b = 0; $b < 2; $b++){
+				for($b = 0; $b < 3; $b++){
 					echo "<td>";
 					echo $guest[$a][$b];
 					echo "</td>";
 					}
+					echo "<input type='checkbox' name='history' value='".$guest[$a][3]."'";
 			echo "</tr>";
 		}
 		

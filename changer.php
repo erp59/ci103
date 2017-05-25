@@ -24,9 +24,11 @@ if (!mysql_select_db('mysql')) {
 }
 
 //$sql = "DELETE FROM Guest";
-$sql1 = "INSERT INTO Guest (`ID`, `rID`, `rusername`, `gusername`, `gfn`, `gln`, `gtnumber`, `hall`, `din`, `tin`, `dout`, `tout`, `pending`) ";
-$sql2 = "VALUES ('$ID', '$rID', '$rUser', '$gUser', '$gFName', '$gLName', '$gTNumber', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut', '1')";
+$sql1 = "INSERT INTO history (`ID`, `rID`, `rusername`, `gusername`, `gfn`, `gln`, `gtnumber`, `hall`, `din`, `tin`, `dout`, `tout`) ";
+$sql2 = "VALUES ('$ID', '$rID', '$rUser', '$gUser', '$gFName', '$gLName', '$gTNumber', '$hall', '$dateIn', '$timeIn', '$dateOut', '$timeOut')";
 $sql = $sql1.$sql2;
+
+
 
 mysql_query($sql);
 
