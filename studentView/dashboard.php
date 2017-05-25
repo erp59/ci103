@@ -185,7 +185,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	
 	
-	<table border = "1" width='100%'>
 	
 	<form action='cancelGuest.php' Method= 'post'>
 	<?php
@@ -207,7 +206,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		}//end for
 		}// end if DGuest
 		
-		
+		echo "<table border = '1' width='100%'>";
 		echo "<tr>";
         echo "<th>Name</th>";
     	echo "<th>Sign In Time</th> ";
@@ -234,6 +233,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			echo "<tr>";
 			echo "<td colspan='3'><input type='submit' value='Cancel'></td>";
 			echo "</tr>";
+			echo "</table>";
 		}
 		
 		
@@ -242,16 +242,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	}
 	
 	?>
-	
-	
 	</form>
-	
-	
-	
-	
-	</table>
-	
-	
 	
 	</td>
 	
@@ -399,7 +390,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 					echo $guest[$a][$b];
 					echo "</td>";
 					}
-					echo "<input type='checkbox' name='history' value='".$guest[$a][3]."'";
+					echo "<td><input type='checkbox' name='history' value='".$guest[$a][3]."' </td>";
 			echo "</tr>";
 		}
 		
@@ -416,8 +407,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		
 	</td>
 	</tr>
-	
-	
 	
 	</table>
 			
