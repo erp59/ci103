@@ -1,21 +1,13 @@
 <?php
-
 //Created By Elio Pettigrosso
 //Last Modified: 4/6/17
 //Resident Checks for Drexel Guest or Non-Drexel Guest
-
-
-
 session_start();
-
 $rUser = $_SESSION['rusername'];
 $fName = $_SESSION['rFName'];
 $lName = $_SESSION['rLName'];
 $hall = $_SESSION['hall'];
-
 $id = $_SESSION['rID'];
-
-
 //DB connection
 $link = mysql_connect('localhost', 'root', 'root');
 if (!$link) {
@@ -24,15 +16,10 @@ if (!$link) {
 if (!mysql_select_db('mysql')) {
     die('Could not select database: ' . mysql_error());
 }
-
 $dPendingGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND pending = '1'");
-
 $dSignedGuest = mysql_query("SELECT * FROM Guest WHERE rusername = '$rUser'AND pending = '0'");
-
 $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
-
 		
-
 ?>
 
 
@@ -55,12 +42,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		h1 {
 			font-family: "PT Serif";
 			font-size: 36px;
-			text-align: center;
-			text-shadow:
-			-1px -1px 0 #092F62 ,
-			1px -1px 0 #092F62 ,
-			-1px 1px 0 #092F62 ,
-			1px 1px 0 #092F62 ; 
+			text-align: center; 
 			color: FFC600;
 			margin: 2%;
 		}
@@ -70,10 +52,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			font-size: 18;
 			text-align: center;
 			text-shadow:
-			-1px -1px 0 #092F62 ,
-			1px -1px 0 #092F62 ,
-			-1px 1px 0 #092F62 ,
-			1px 1px 0 #092F62 ; 
 			color: FFFFFF;
 			margin: 2%;
 		}
@@ -96,7 +74,6 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			border-radius: 4px;
 			box-sizing: border-box;
 		}
-
 		input[type=submit] {
 			text-align: center;
 			background-color: #4CAF50;
@@ -107,11 +84,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			margin-top: 15px;
 			cursor: pointer;
 		}
-
 		input[type=submit]:hover {
 			background-color: #45a049;
 		}
-
 		#text {
 			text-align: center;
 			font-size: 24px;
@@ -144,36 +119,36 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 			margin: 0.55%;
 		}
 		
-
 	
 	
 	table, th, td {
     border: 1 px solid black;
     padding: 1px;
     border-collapse: collapse;
-
 	}
-	table {
-    border-spacing: 10px;
-	}
-
 	
+	table#t01 {
+	table-layout: fixed;
+    width: 900px;
+	}
 	</style>
 	
 	</head>
 	
 	<body>
 	
-	<div id="text">
+	
 			
-	<h1> Welcome, <?php echo $fName; echo " "; echo $lName;?></h1>
+	
 	
 	
 	
 	<br />
 	
-	<table border = "1">
+	<div align="center">
+	<table id="t01" border = "1" bgcolor="#FFFFFF">
 	
+	<tr><td  colspan="2"><h1> Welcome, <?php echo $fName; echo " "; echo $lName;?></h1></td></tr>
 
 	<tr>
 	<td>
@@ -238,7 +213,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		
 		
 	}else{
-		echo "There are no pending guest!";
+		echo "<h3>There are no pending guest!</h3>";
 	}
 	
 	?>
@@ -296,7 +271,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	<td>
 		
 		
-		<h1>Current Guest Signed In</h1>
+		<h1>Current Guest </h1>
 		<h3>
 		<table border = "1" width='100%' height='100%'>
 		<?php
@@ -318,8 +293,8 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		
 	
 		echo "<tr>";
-        echo "<th>Name</th>";
-    	echo "<th>Sign Out Time</th> ";
+        echo "<th><h2>Name</h2></th>";
+    	echo "<th><h2>Sign Out Time</h2></th> ";
   		echo "</tr>";
 		
 		//Loop through pendingGuest
@@ -386,9 +361,9 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 		for($a = 0; $a < count($guest); $a++){	
 			echo "<tr>";
 				for($b = 0; $b < 3; $b++){
-					echo "<td>";
+					echo "<td><h3>";
 					echo $guest[$a][$b];
-					echo "</td>";
+					echo "</h3></td>";
 					}
 					echo "<td><input type='checkbox' name='history' value='".$guest[$a][3]."' </td>";
 			echo "</tr>";
@@ -410,7 +385,7 @@ $history = mysql_query("SELECT * FROM history WHERE rusername = '$rUser'");
 	
 	</table>
 			
-	</div>		
+			
 			
 	</body>
 	
